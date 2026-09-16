@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['posters/*.jpg', 'exercises/*.png', 'effects/*.png', 'muscles/*.png', 'icons/icon.svg'],
+      includeAssets: ['posters/*.jpg', 'posters/*.png', 'exercises/*.png', 'effects/*.png', 'muscles/*.png', 'icons/icon.svg'],
       manifest: {
         name: '稳举',
         short_name: '稳举',

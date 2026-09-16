@@ -48,9 +48,9 @@ export function TodayPage() {
     <div className="page">
       <header className="hero">
         <button type="button" className="hero-poster" onClick={() => setShowPoster(true)}>
-          <img src={day.poster} alt={`${day.id}日训练海报，点开可左右滑动看 1 到 8 图`} />
+          <img src={day.poster} alt={`${day.id}日训练海报，点开可左右滑动看 1 到 9 图`} />
         </button>
-        <p className="hint">点海报可左右滑动，看完整 8 图</p>
+        <p className="hint">点海报可左右滑动，看完整 9 图</p>
         <p className="eyebrow">{formatDateLabel()}</p>
         <h1>
           {day.id}日

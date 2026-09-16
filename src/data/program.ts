@@ -383,8 +383,16 @@ export const targets = [
   { name: '平板支撑', value: '60–90 秒' },
 ]
 
+const liftDonts = [
+  { title: '弯腰直拎', text: '弯腰硬提，很容易伤腰。' },
+  { title: '身体太远', text: '人离太远，杠杆更差，也更容易晃。' },
+  { title: '核心松、身体晃', text: '核心不收，身体一晃，两边都不安全。' },
+  { title: '还没练就硬举', text: '没有力量基础就上真人，容易拉伤。' },
+]
+
 export const liftGuide = {
   poster: '/posters/lift-guide.jpg',
+  title: '正面抱起',
   principle: '让她靠近你，用腿和臀发力，稳稳抱起，彼此更安心。',
   note: '第 9 周以后再保守接触真人动作。安全第一。',
   steps: [
@@ -395,23 +403,37 @@ export const liftGuide = {
     { no: '05', title: '保持 1–2 秒', text: '站稳后停一下，确认双方都稳、都舒适。' },
     { no: '06', title: '按反顺序放下', text: '先屈膝，控制往下放，让她稳稳回到地面。' },
   ],
-  donts: [
-    { title: '弯腰直拎', text: '弯腰硬提，很容易伤腰。' },
-    { title: '身体太远', text: '人离太远，杠杆更差，也更容易晃。' },
-    { title: '核心松、身体晃', text: '核心不收，身体一晃，两边都不安全。' },
-    { title: '还没练就硬举', text: '没有力量基础就上真人，容易拉伤。' },
-  ],
+  donts: liftDonts,
 }
 
+export const armLiftGuide = {
+  poster: '/posters/lift-guide-arm.png',
+  title: '背对平举',
+  principle: '两个人脸朝同一边。你的手臂弯成 90°，她的背靠在你的小臂上，用腿和臀站起。',
+  note: '第 9 周以后再保守接触真人动作。安全第一。这个比正面抱更费核心和平衡。',
+  steps: [
+    { no: '01', title: '站到同一朝向', text: '两个人脸朝同一边，像一起看窗外。你在她侧后方。' },
+    { no: '02', title: '手臂弯成 90°', text: '半蹲，核心收紧。上臂贴近身体，小臂水平，给她当靠背。' },
+    { no: '03', title: '背靠上小臂', text: '她仍看向前方，背部靠上你的小臂。另一只手可托住髋，肘保持约 90°。' },
+    { no: '04', title: '腿臀发力站起', text: '用腿和臀往上站。她的背始终靠在你手臂上，不要转头对视。' },
+    { no: '05', title: '接稳 1–2 秒', text: '她坐得比你高，一条腿可屈起。确认背靠稳、双方都舒适。' },
+    { no: '06', title: '按反顺序放下', text: '先屈膝下蹲，再让她把脚落到地面。' },
+  ],
+  donts: liftDonts,
+}
+
+export const liftGuides = [liftGuide, armLiftGuide]
+
 export const posters = [
-  { src: '/posters/cover.jpg', label: '封面', page: '1/8' },
-  { src: '/posters/overview.jpg', label: '每周安排', page: '2/8' },
-  { src: '/posters/day-a.jpg', label: 'A 日', page: '3/8' },
-  { src: '/posters/day-b.jpg', label: 'B 日', page: '4/8' },
-  { src: '/posters/day-c.jpg', label: 'C 日', page: '5/8' },
-  { src: '/posters/weeks.jpg', label: '12 周', page: '6/8' },
-  { src: '/posters/lift-guide.jpg', label: '抱持要领', page: '7/8' },
-  { src: '/posters/targets.jpg', label: '目标参考', page: '8/8' },
+  { src: '/posters/cover.jpg', label: '封面', page: '1/9' },
+  { src: '/posters/overview.jpg', label: '每周安排', page: '2/9' },
+  { src: '/posters/day-a.jpg', label: 'A 日', page: '3/9' },
+  { src: '/posters/day-b.jpg', label: 'B 日', page: '4/9' },
+  { src: '/posters/day-c.jpg', label: 'C 日', page: '5/9' },
+  { src: '/posters/weeks.jpg', label: '12 周', page: '6/9' },
+  { src: '/posters/lift-guide.jpg', label: '正面抱起', page: '7/9' },
+  { src: '/posters/lift-guide-arm.png', label: '背对平举', page: '8/9' },
+  { src: '/posters/targets.jpg', label: '目标参考', page: '9/9' },
 ]
 
 export function posterIndex(src: string): number {
