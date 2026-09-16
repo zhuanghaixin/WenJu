@@ -413,6 +413,10 @@ export function todayKey(date = new Date()): string {
   return `${year}-${month}-${day}`
 }
 
+export function weekKey(date = new Date()): string {
+  return weekDateKeys(date)[0]
+}
+
 export function weekDateKeys(date = new Date()): string[] {
   const local = new Date(date.getFullYear(), date.getMonth(), date.getDate())
   const weekday = local.getDay()

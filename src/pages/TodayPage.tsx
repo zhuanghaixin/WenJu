@@ -4,17 +4,16 @@ import { DaySwitcher } from '@/components/checklist/DaySwitcher'
 import { ExerciseRow } from '@/components/checklist/ExerciseRow'
 import { ExerciseSheet } from '@/components/checklist/ExerciseSheet'
 import { PosterLightbox } from '@/components/media/PosterLightbox'
-import { formatDateLabel, getDay, isAllDaysComplete, todayKey, type Exercise } from '@/data/program'
+import { days, formatDateLabel, getDay, isAllDaysComplete, weekKey, type Exercise } from '@/data/program'
 import { useChecklist } from '@/hooks/useChecklist'
 import { useTrainingDay } from '@/hooks/useTrainingDay'
-import { mergeWeekChecks } from '@/lib/db'
 
 export function TodayPage() {
-  const date = todayKey()
+  const weekId = weekKey()
   const { dayId, setDayId, suggested } = useTrainingDay()
   const day = getDay(dayId)
   const exerciseIds = useMemo(() => day.exercises.map((item) => item.id), [day])
-  const { checks, toggle, doneCount, ready } = useChecklist(date, exerciseIds)
+  const { checks, toggle, doneCount, ready } = useChecklist(weekId, exerciseIds)
   const [openExercise, setOpenExercise] = useState<Exercise | null>(null)
   const [showPoster, setShowPoster] = useState(false)
   const [showCelebrate, setShowCelebrate] = useState(false)
@@ -32,7 +31,7 @@ export function TodayPage() {
     previousDone.current = doneCount
     if (previous === null) return
     if (previous < total && doneCount === total) {
-      const weekDone = isAllDaysComplete(mergeWeekChecks(checks))
+      const weekDone = isAllDaysComplete(checks)
       setCelebrateVariant(weekDone ? 'week' : 'day')
       setShowCelebrate(true)
     }
@@ -61,7 +60,18 @@ export function TodayPage() {
         <p className="hint">{restHint}</p>
         <DaySwitcher value={dayId} suggested={suggested} onChange={setDayId} />
         <p className="progress">
-          今日进度 {doneCount}/{day.exercises.length}
+          本周 {day.id}日 {doneCount}/{day.exercises.length}
+        </p>
+        <p className="week-status">
+          {days.map((item) => {
+            const finished = item.exercises.every((exercise) => checks[exercise.id])
+            return (
+              <span key={item.id} className={finished ? 'is-done' : undefined}>
+                {item.id}日{finished ? '已练' : '未练'}
+              </span>
+            )
+          })}
+          <span className="week-reset">下周一清空</span>
         </p>
         <div className="progress-bar" aria-hidden>
           <span style={{ width: `${(doneCount / day.exercises.length) * 100}%` }} />

@@ -174,3 +174,25 @@
   - `public/effects/bulma-kiss-vegeta.png`
   - `src/styles.css`、`需求.md`、`log.md`
 
+## 2026-09-17 是否做「我的」热力图
+
+- 会话的主要目的：判断要不要加「我的」Tab + GitHub 式年历运动图
+- 完成的主要任务：澄清本地数据并不会按周清空；建议先不加第四个 Tab
+- 关键决策和解决方案：年历热力图和每周 3 练不匹配；真需求是看见本周/12 周历史，不是再开个人页
+- 使用的技术栈：无新代码（产品判断）
+- 修改了哪些文件：
+  - `log.md`
+
+## 2026-09-17 清单改为按周重置
+
+- 会话的主要目的：TODOLIST 按自然周存，下周一清空
+- 完成的主要任务：存储 key 从自然日改为周一；本周 A/B/C 共用一份勾选；旧的按日数据会迁进本周
+- 关键决策和解决方案：不按天重开空清单；切换训练日不丢本周进度
+- 使用的技术栈：React、localStorage + IndexedDB
+- 修改了哪些文件：
+  - `src/lib/db.ts`
+  - `src/hooks/useChecklist.ts`
+  - `src/data/program.ts`
+  - `src/pages/TodayPage.tsx`
+  - `src/styles.css`、`需求.md`、`log.md`
+
