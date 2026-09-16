@@ -136,3 +136,16 @@
   - `src/components/media/PosterLightbox.tsx`
   - `src/styles.css`、`log.md`
 
+## 2026-09-17 每动作独立示范图
+
+- 会话的主要目的：要领抽屉里每个动作对应自己的器械示范图
+- 完成的主要任务：按角色设定图生成 18 张高清动作图，并接到 A/B/C 清单
+- 关键决策和解决方案：
+  - 文件名与动作 id 一致，如 `a-squat.png`
+  - 要领抽屉不再裁切整张日海报
+- 使用的技术栈：React、静态 PNG
+- 修改了哪些文件：
+  - `public/exercises/*.png`（18 张）
+  - `src/components/checklist/ExerciseSheet.tsx`
+  - `src/styles.css`、`vite.config.ts`、`需求.md`、`log.md`
+

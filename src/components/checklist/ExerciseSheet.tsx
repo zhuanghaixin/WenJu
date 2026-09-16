@@ -26,7 +26,11 @@ export function ExerciseSheet({ day, exercise, onClose }: ExerciseSheetProps) {
       <button type="button" className="sheet-backdrop" aria-label="关闭要领" onClick={onClose} />
       <section className="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
         <div className="sheet-handle" />
-        <img className="sheet-poster" src={day.poster} alt={`${day.id}日示范海报`} />
+        <img
+          className="sheet-poster"
+          src={`/exercises/${exercise.id}.png`}
+          alt={`${exercise.name}动作示范`}
+        />
         <p className="eyebrow">
           {day.id}日 · {exercise.no}
         </p>
