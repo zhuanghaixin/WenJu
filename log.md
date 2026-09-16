@@ -87,3 +87,52 @@
   - 新增本地 `.git`
   - `log.md`（追加本条）
 - 仓库地址：https://github.com/zhuanghaixin/WenJu （private）
+
+## 2026-09-17 海报改为 8 图轮播
+
+- 会话的主要目的：评估并实现点海报后左右滑动 1–8 图
+- 完成的主要任务：
+  - 确认设计：只从海报入口进画廊，从当前图开始
+  - `PosterLightbox` 改成 scroll-snap 轮播，今日/计划/要领共用
+- 关键决策和解决方案：
+  - 动作行仍打开要领抽屉，不进 8 图
+  - 显示 `4/8 · B 日`，不用自动播放
+- 使用的技术栈：React、CSS scroll-snap
+- 修改了哪些文件：
+  - `src/components/media/PosterLightbox.tsx`
+  - `src/data/program.ts`
+  - `src/pages/TodayPage.tsx` / `PlanPage.tsx` / `GuidePage.tsx`
+  - `src/styles.css`、`需求.md`、`log.md`
+
+## 2026-09-17 海报点击放大
+
+- 会话的主要目的：轮播里单独点一张图可以放大细看
+- 完成的主要任务：点当前海报进入可滚动放大层，缩小回到 8 图轮播
+- 关键决策和解决方案：
+  - 滑动超过 10px 不当作点击，避免和左右滑冲突
+  - Escape 先退出放大，再关闭画廊
+- 使用的技术栈：React、CSS overlay
+- 修改了哪些文件：
+  - `src/components/media/PosterLightbox.tsx`
+  - `src/styles.css`、`需求.md`、`log.md`
+
+## 2026-09-17 缩小与关闭同一行
+
+- 会话的主要目的：放大预览里「缩小」和「关闭」排成一行
+- 完成的主要任务：右上角共用一条操作栏，放大时两个按钮并排
+- 关键决策和解决方案：用 `lightbox-actions` flex 行，不再上下叠两个粉按钮
+- 使用的技术栈：React、CSS flex
+- 修改了哪些文件：
+  - `src/components/media/PosterLightbox.tsx`
+  - `src/styles.css`、`log.md`
+
+## 2026-09-17 放大时图片位置不跳
+
+- 会话的主要目的：点击放大后图片不要往上跑，保持点之前的位置
+- 完成的主要任务：放大层按点击时的 top/width 定位，只往下展开，可继续上滑看后半段
+- 关键决策和解决方案：记录 getBoundingClientRect，放大图用同样宽度和顶部间距，不再顶对齐重排
+- 使用的技术栈：React、CSS overlay
+- 修改了哪些文件：
+  - `src/components/media/PosterLightbox.tsx`
+  - `src/styles.css`、`log.md`
+

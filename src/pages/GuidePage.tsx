@@ -43,7 +43,7 @@ export function GuidePage() {
       </section>
 
       {open ? (
-        <PosterLightbox src={liftGuide.poster} alt="抱持要领原图" onClose={() => setOpen(false)} />
+        <PosterLightbox startSrc={liftGuide.poster} onClose={() => setOpen(false)} />
       ) : null}
     </div>
   )

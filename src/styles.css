@@ -425,7 +425,7 @@ h2 {
 
 .sheet-backdrop,
 .lightbox {
-  background: rgba(6, 2, 10, 0.72);
+  background: rgba(8, 4, 14, 0.96);
 }
 
 .sheet {
@@ -480,7 +480,7 @@ h2 {
 
 .primary-btn,
 .lightbox-close {
-  min-height: 48px;
+  min-height: 44px;
   border: 0;
   border-radius: 14px;
   background: var(--pink);
@@ -490,22 +490,132 @@ h2 {
 
 .lightbox {
   display: grid;
-  align-items: center;
-  padding: 56px 12px 12px;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  align-items: stretch;
+  padding: 56px 0 calc(12px + env(safe-area-inset-bottom));
 }
 
-.lightbox img {
-  width: min(520px, 100%);
+.lightbox-meta,
+.lightbox-hint {
+  width: min(520px, calc(100% - 24px));
   margin: 0 auto;
-  max-height: 88dvh;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.lightbox-meta {
+  color: var(--cream);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.lightbox-hint {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+
+.carousel-zoom-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  width: min(520px, calc(100% - 24px));
+  cursor: zoom-in;
+}
+
+.carousel-slide img {
+  width: 100%;
+  max-height: min(62dvh, 100%);
   object-fit: contain;
   border-radius: 16px;
 }
 
-.lightbox-close {
+.zoom-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: auto;
+  padding: 0 0 calc(24px + env(safe-area-inset-bottom));
+  background: rgba(8, 4, 14, 0.96);
+}
+
+.zoom-layer img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 16px;
+}
+
+.lightbox-actions {
   position: absolute;
   top: calc(10px + env(safe-area-inset-top));
   right: 12px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  width: min(520px, calc(100% - 24px));
+  margin: 10px auto 0;
+}
+
+.carousel-arrow {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.35;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.dot.is-active {
+  width: 18px;
+  background: var(--pink);
+}
+
+.lightbox-close {
   padding: 0 14px;
 }
 

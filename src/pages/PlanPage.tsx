@@ -83,7 +83,7 @@ export function PlanPage() {
       </section>
 
       {poster ? (
-        <PosterLightbox src={poster} alt="训练海报" onClose={() => setPoster(null)} />
+        <PosterLightbox startSrc={poster} onClose={() => setPoster(null)} />
       ) : null}
     </div>
   )

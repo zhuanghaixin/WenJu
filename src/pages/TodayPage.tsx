@@ -27,8 +27,9 @@ export function TodayPage() {
     <div className="page">
       <header className="hero">
         <button type="button" className="hero-poster" onClick={() => setShowPoster(true)}>
-          <img src={day.poster} alt={`${day.id}日训练海报`} />
+          <img src={day.poster} alt={`${day.id}日训练海报，点开可左右滑动看 1 到 8 图`} />
         </button>
+        <p className="hint">点海报可左右滑动，看完整 8 图</p>
         <p className="eyebrow">{formatDateLabel()}</p>
         <h1>
           {day.id}日
@@ -72,11 +73,7 @@ export function TodayPage() {
         <ExerciseSheet day={day} exercise={openExercise} onClose={() => setOpenExercise(null)} />
       ) : null}
       {showPoster ? (
-        <PosterLightbox
-          src={day.poster}
-          alt={`${day.id}日完整海报`}
-          onClose={() => setShowPoster(false)}
-        />
+        <PosterLightbox startSrc={day.poster} onClose={() => setShowPoster(false)} />
       ) : null}
     </div>
   )

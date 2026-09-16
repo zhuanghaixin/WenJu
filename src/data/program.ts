@@ -385,15 +385,20 @@ export const liftGuide = {
 }
 
 export const posters = [
-  { src: '/posters/cover.jpg', label: '封面' },
-  { src: '/posters/overview.jpg', label: '每周安排' },
-  { src: '/posters/day-a.jpg', label: 'A 日' },
-  { src: '/posters/day-b.jpg', label: 'B 日' },
-  { src: '/posters/day-c.jpg', label: 'C 日' },
-  { src: '/posters/weeks.jpg', label: '12 周' },
-  { src: '/posters/lift-guide.jpg', label: '抱持要领' },
-  { src: '/posters/targets.jpg', label: '目标参考' },
+  { src: '/posters/cover.jpg', label: '封面', page: '1/8' },
+  { src: '/posters/overview.jpg', label: '每周安排', page: '2/8' },
+  { src: '/posters/day-a.jpg', label: 'A 日', page: '3/8' },
+  { src: '/posters/day-b.jpg', label: 'B 日', page: '4/8' },
+  { src: '/posters/day-c.jpg', label: 'C 日', page: '5/8' },
+  { src: '/posters/weeks.jpg', label: '12 周', page: '6/8' },
+  { src: '/posters/lift-guide.jpg', label: '抱持要领', page: '7/8' },
+  { src: '/posters/targets.jpg', label: '目标参考', page: '8/8' },
 ]
+
+export function posterIndex(src: string): number {
+  const index = posters.findIndex((item) => item.src === src)
+  return index >= 0 ? index : 0
+}
 
 export function getDay(id: DayId): TrainingDay {
   const found = days.find((item) => item.id === id)
