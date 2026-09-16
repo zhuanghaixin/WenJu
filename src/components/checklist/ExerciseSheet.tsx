@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { MuscleMap } from '@/components/checklist/MuscleMap'
 import type { Exercise, TrainingDay } from '@/data/program'
 
 type ExerciseSheetProps = {
@@ -38,7 +39,12 @@ export function ExerciseSheet({ day, exercise, onClose }: ExerciseSheetProps) {
         <p className="sheet-dose">
           {exercise.dose} · {exercise.muscles}
         </p>
+        <MuscleMap muscles={exercise.muscles} />
         <h3>动作要领</h3>
+        <p className="breath-cue">
+          <strong>呼吸</strong>
+          {exercise.breathing}
+        </p>
         <ul className="cue-list">
           {exercise.cues.map((cue) => (
             <li key={cue}>{cue}</li>

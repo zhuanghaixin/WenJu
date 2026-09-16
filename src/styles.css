@@ -485,6 +485,154 @@ h2 {
   background: #f4f0f6;
 }
 
+.muscle-map {
+  padding: 12px 10px 8px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.muscle-map-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.muscle-map-head h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.muscle-map-head p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.muscle-figs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.muscle-fig {
+  margin: 0;
+  text-align: center;
+}
+
+.muscle-fig figcaption {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.muscle-fig-frame {
+  position: relative;
+  overflow: visible;
+}
+
+.muscle-body {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.muscle-pin-wrap {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transform: translate(-50%, -50%);
+  animation: muscle-pop 0.45s ease-out both;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.muscle-pin-wrap.is-left {
+  flex-direction: row-reverse;
+}
+
+.muscle-aim {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  flex: none;
+}
+
+.muscle-glow,
+.muscle-dot {
+  display: block;
+}
+
+.muscle-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid #ff4d6a;
+  animation: muscle-ping 1.3s ease-out infinite;
+}
+
+.muscle-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ff3355;
+  box-shadow: 0 0 10px #ff3355;
+}
+
+.muscle-pin-wrap b {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #2a1422;
+  border: 1px solid #ff6b8d;
+  color: #ffe0ea;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@keyframes muscle-ping {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.85;
+  }
+  80% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes muscle-pop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.breath-cue {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 77, 141, 0.1);
+  border: 1px solid rgba(255, 138, 179, 0.28);
+  color: var(--cream);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.breath-cue strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--pink-soft);
+  font-size: 12px;
+}
+
 .sheet-dose,
 .cue-list,
 .mistake-list {

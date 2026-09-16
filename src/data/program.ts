@@ -6,6 +6,7 @@ export type Exercise = {
   name: string
   dose: string
   muscles: string
+  breathing: string
   cues: string[]
   mistakes: string[]
 }
@@ -40,6 +41,7 @@ export const days: TrainingDay[] = [
         name: '杠铃深蹲 / 史密斯深蹲',
         dose: '4 × 5',
         muscles: '股四头、臀、核心',
+        breathing: '下蹲吸气，站起呼气。胸口撑住，不要整组都憋死。',
         cues: [
           '可用杠铃或史密斯机，先把动作做标准',
           '脚约与肩同宽，脚尖略外展',
@@ -54,6 +56,7 @@ export const days: TrainingDay[] = [
         name: '保加利亚分腿蹲',
         dose: '3 × 8 / 侧',
         muscles: '前腿股四头、臀',
+        breathing: '下蹲吸气，前腿蹬起时呼气。',
         cues: [
           '后脚轻搭凳上，体重主要在前脚',
           '身体保持直立稳定，不要前扑',
@@ -68,6 +71,7 @@ export const days: TrainingDay[] = [
         name: '臀推',
         dose: '3 × 8–10',
         muscles: '臀大肌、腘绳肌',
+        breathing: '髋下放时吸气，推到顶呼气，顶峰停 1 秒把气呼完。',
         cues: [
           '上背靠凳，杠铃或重量压在髋上',
           '用臀部把髋推起来，顶峰收缩 1 秒',
@@ -82,6 +86,7 @@ export const days: TrainingDay[] = [
         name: '腿举',
         dose: '3 × 10',
         muscles: '股四头、臀',
+        breathing: '踏板下放吸气，推起呼气。膝盖不要锁死再呼。',
         cues: [
           '双脚约与肩同宽，踩在踏板中部',
           '下放控制节奏，膝与脚尖同向',
@@ -96,6 +101,7 @@ export const days: TrainingDay[] = [
         name: '平板支撑',
         dose: '3 × 45–60 秒',
         muscles: '核心',
+        breathing: '均匀鼻吸口呼，不要憋气。每口气都轻轻把肚子收住。',
         cues: [
           '身体一条直线，从头到脚跟',
           '核心收紧，肩在肘正上方',
@@ -110,6 +116,7 @@ export const days: TrainingDay[] = [
         name: 'Pallof Press',
         dose: '3 × 12 / 侧',
         muscles: '腹肌抗旋转',
+        breathing: '把手推出去时呼气，收回时吸气。身体越想转，越用呼气压住肋骨。',
         cues: [
           '侧对阻力，双手把把手推到胸前再伸直',
           '骨盆和胸口正对前方，身体不要跟着转',
@@ -139,6 +146,7 @@ export const days: TrainingDay[] = [
         name: '六角杠硬拉 / 传统硬拉',
         dose: '4 × 5',
         muscles: '髋、臀、背、腘绳肌',
+        breathing: '拉起前先吸满气把腹压撑住，杠过膝后再呼一点；下放时再吸。',
         cues: [
           '脚站在杠内或杠下，小腿贴近杠',
           '挺胸收腹，背打直，肩在杠前方一点点',
@@ -153,6 +161,7 @@ export const days: TrainingDay[] = [
         name: '泽奇深蹲',
         dose: '3 × 6',
         muscles: '腿、核心、上背',
+        breathing: '下蹲吸气撑住核心，站起呼气。不要憋到脸色发白。',
         cues: [
           '双臂交叉，把杠铃托在肘弯',
           '挺胸，核心收紧，再往下坐',
@@ -167,6 +176,7 @@ export const days: TrainingDay[] = [
         name: '罗马尼亚硬拉',
         dose: '3 × 8',
         muscles: '腘绳肌、臀、下背',
+        breathing: '髋后移、杠下滑时吸气，髋收回站直时呼气。',
         cues: [
           '膝微屈，固定这个角度',
           '髋往后推，杠贴着大腿下滑',
@@ -181,6 +191,7 @@ export const days: TrainingDay[] = [
         name: '农夫行走',
         dose: '4 × 20 米',
         muscles: '握力、核心、斜方肌',
+        breathing: '起步先吸气收腹，走路时短促均匀呼吸，不要憋到脸红。',
         cues: [
           '挺胸收腹，肩膀下沉',
           '哑铃或壶铃贴着身体两侧',
@@ -195,6 +206,7 @@ export const days: TrainingDay[] = [
         name: '坐姿划船',
         dose: '3 × 8–12',
         muscles: '中背、肩胛',
+        breathing: '拉向腹部时呼气，回放时吸气。',
         cues: [
           '坐稳，挺胸，先把肩胛往后收',
           '手肘贴近身体把把手拉向腹部',
@@ -209,6 +221,7 @@ export const days: TrainingDay[] = [
         name: '泽奇静态抱持',
         dose: '3 × 20–30 秒',
         muscles: '核心、上背、手臂',
+        breathing: '小口均匀呼吸。每呼一口气，肋骨往回收一点，不要憋气硬撑。',
         cues: [
           '双臂交叉，把重量稳稳抱在胸前',
           '核心收紧，肋骨压下去',
@@ -238,6 +251,7 @@ export const days: TrainingDay[] = [
         name: '高脚杯深蹲 / 前蹲',
         dose: '4 × 6–8',
         muscles: '臀腿、核心',
+        breathing: '下蹲吸气，站起呼气。胸口抬着，气不要断。',
         cues: [
           '哑铃或壶铃抱在胸前，肘朝下',
           '双脚与肩同宽，核心收紧',
@@ -252,6 +266,7 @@ export const days: TrainingDay[] = [
         name: '台阶踩踏',
         dose: '3 × 8 / 侧',
         muscles: '臀腿、平衡',
+        breathing: '上台站起时呼气，控制下来时吸气。',
         cues: [
           '整只前脚踩上台阶，不要只有脚掌',
           '用上台那一侧的臀腿发力站起',
@@ -266,6 +281,7 @@ export const days: TrainingDay[] = [
         name: '行进弓步',
         dose: '3 × 10 / 侧',
         muscles: '臀腿、平衡',
+        breathing: '迈步下蹲吸气，前腿蹬起时呼气。',
         cues: [
           '向前迈一步，前后膝都大约 90°',
           '后膝接近地面，但不要砸地板',
@@ -280,6 +296,7 @@ export const days: TrainingDay[] = [
         name: '高位下拉',
         dose: '3 × 10',
         muscles: '背阔肌、手臂',
+        breathing: '杆拉下来时呼气，回放时吸气。',
         cues: [
           '双手略宽于肩握住横杆',
           '挺胸，先把肩胛往下收',
@@ -294,6 +311,7 @@ export const days: TrainingDay[] = [
         name: '侧桥',
         dose: '3 × 30–45 秒 / 侧',
         muscles: '核心、侧链',
+        breathing: '均匀呼吸。呼气时把髋再抬稳一点，不要憋气。',
         cues: [
           '肘在肩正下方，身体一条直线',
           '把髋抬起来，不要让腰塌下去',
@@ -308,6 +326,7 @@ export const days: TrainingDay[] = [
         name: 'Dead Bug',
         dose: '3 × 10 / 侧',
         muscles: '核心、稳定性',
+        breathing: '手脚伸出去时慢慢呼气，收回时吸气。腰始终贴地。',
         cues: [
           '仰卧，下背轻轻贴住地面',
           '对侧手脚同时慢慢伸出去',

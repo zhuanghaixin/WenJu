@@ -196,3 +196,64 @@
   - `src/pages/TodayPage.tsx`
   - `src/styles.css`、`需求.md`、`log.md`
 
+## 2026-09-17 要领抽屉活动肌群
+
+- 会话的主要目的：要领抽屉里标出活动肌群，红点动态指向
+- 完成的主要任务：用 SVG 正面/背面图，按动作文案点亮部位并做脉冲红点
+- 关键决策和解决方案：不做 Canvas / 3D；肌群是数据驱动的 SVG，比逐张动图好维护
+- 使用的技术栈：React、SVG、CSS animation
+- 修改了哪些文件：
+  - `src/data/muscles.ts`
+  - `src/components/checklist/MuscleMap.tsx`
+  - `src/components/checklist/ExerciseSheet.tsx`
+  - `src/styles.css`、`需求.md`、`log.md`
+
+## 2026-09-17 肌群图改真人解剖
+
+- 会话的主要目的：上一版色块不像人，换成正面/背面解剖图
+- 完成的主要任务：底图用人体肌群图，红点和标签按百分比叠在部位上
+- 关键决策和解决方案：不再用椭圆拼小人；图是人，点是数据
+- 使用的技术栈：静态 PNG + CSS 定位
+- 修改了哪些文件：
+  - `public/muscles/body-front.png`
+  - `public/muscles/body-back.png`
+  - `src/components/checklist/MuscleMap.tsx`
+  - `src/data/muscles.ts`
+  - `src/styles.css`、`vite.config.ts`、`log.md`
+
+## 2026-09-17 贝吉塔肌纤维解剖图
+
+- 会话的主要目的：活动肌群底图改成贝吉塔头 + 肌纤维解剖身子
+- 完成的主要任务：生成并接入正面/背面两张解剖板，红点坐标按新构图微调
+- 关键决策和解决方案：脸按角色设定图；身体用教材式肌纤维，不走写实皮肤
+- 使用的技术栈：生成图 PNG + 百分比标注
+- 修改了哪些文件：
+  - `public/muscles/vegeta-anatomy-front.png`
+  - `public/muscles/vegeta-anatomy-back.png`
+  - `src/components/checklist/MuscleMap.tsx`
+  - `src/data/muscles.ts`
+  - `log.md`
+
+## 2026-09-17 解剖图改白底格子
+
+- 会话的主要目的：贝吉塔解剖图不要黑底，改成设定图那种白底格子
+- 完成的主要任务：重出正面/背面并替换 public 资源
+- 关键决策和解决方案：人物和肌纤维保持原样，只换背景
+- 使用的技术栈：生成图 PNG
+- 修改了哪些文件：
+  - `public/muscles/vegeta-anatomy-front.png`
+  - `public/muscles/vegeta-anatomy-back.png`
+  - `src/styles.css`
+  - `log.md`
+
+## 2026-09-17 每个动作补呼吸
+
+- 会话的主要目的：要领里告诉每个动作怎么呼吸
+- 完成的主要任务：18 个动作都写了吸/呼时机，显示在「动作要领」最上方
+- 关键决策和解决方案：单独 `breathing` 字段，不和要点混成一条，发力多在呼气，支撑动作均匀呼吸
+- 使用的技术栈：React、训练数据
+- 修改了哪些文件：
+  - `src/data/program.ts`
+  - `src/components/checklist/ExerciseSheet.tsx`
+  - `src/styles.css`、`需求.md`、`log.md`
+
