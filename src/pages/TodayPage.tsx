@@ -1,20 +1,42 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { CelebrateModal } from '@/components/celebrate/CelebrateModal'
 import { DaySwitcher } from '@/components/checklist/DaySwitcher'
 import { ExerciseRow } from '@/components/checklist/ExerciseRow'
 import { ExerciseSheet } from '@/components/checklist/ExerciseSheet'
 import { PosterLightbox } from '@/components/media/PosterLightbox'
-import { formatDateLabel, getDay, todayKey, type Exercise } from '@/data/program'
+import { formatDateLabel, getDay, isAllDaysComplete, todayKey, type Exercise } from '@/data/program'
 import { useChecklist } from '@/hooks/useChecklist'
 import { useTrainingDay } from '@/hooks/useTrainingDay'
+import { mergeWeekChecks } from '@/lib/db'
 
 export function TodayPage() {
   const date = todayKey()
   const { dayId, setDayId, suggested } = useTrainingDay()
   const day = getDay(dayId)
   const exerciseIds = useMemo(() => day.exercises.map((item) => item.id), [day])
-  const { checks, toggle, doneCount } = useChecklist(date, exerciseIds)
+  const { checks, toggle, doneCount, ready } = useChecklist(date, exerciseIds)
   const [openExercise, setOpenExercise] = useState<Exercise | null>(null)
   const [showPoster, setShowPoster] = useState(false)
+  const [showCelebrate, setShowCelebrate] = useState(false)
+  const [celebrateVariant, setCelebrateVariant] = useState<'day' | 'week'>('day')
+  const previousDone = useRef<number | null>(null)
+
+  useEffect(() => {
+    previousDone.current = null
+  }, [dayId])
+
+  useEffect(() => {
+    if (!ready) return
+    const total = exerciseIds.length
+    const previous = previousDone.current
+    previousDone.current = doneCount
+    if (previous === null) return
+    if (previous < total && doneCount === total) {
+      const weekDone = isAllDaysComplete(mergeWeekChecks(checks))
+      setCelebrateVariant(weekDone ? 'week' : 'day')
+      setShowCelebrate(true)
+    }
+  }, [doneCount, ready, exerciseIds.length, dayId, checks])
 
   const restHint =
     suggested === null
@@ -74,6 +96,13 @@ export function TodayPage() {
       ) : null}
       {showPoster ? (
         <PosterLightbox startSrc={day.poster} onClose={() => setShowPoster(false)} />
+      ) : null}
+      {showCelebrate ? (
+        <CelebrateModal
+          variant={celebrateVariant}
+          dayLabel={`${day.id}日`}
+          onClose={() => setShowCelebrate(false)}
+        />
       ) : null}
     </div>
   )

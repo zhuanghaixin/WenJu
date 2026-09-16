@@ -625,3 +625,150 @@ h2 {
   inset: 0;
   border: 0;
 }
+
+.celebrate {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.celebrate-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(6, 2, 10, 0.72);
+}
+
+.celebrate-card {
+  position: relative;
+  z-index: 1;
+  width: min(360px, 100%);
+  padding: 28px 20px 20px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #2a1408 0%, #16081c 100%);
+  border: 1px solid rgba(255, 176, 64, 0.45);
+  box-shadow: 0 0 40px rgba(255, 140, 32, 0.28);
+  text-align: center;
+  animation: celebrate-pop 0.55s cubic-bezier(0.18, 0.9, 0.32, 1.2);
+}
+
+.celebrate-card-week {
+  background: linear-gradient(180deg, #3a1230 0%, #16081c 100%);
+  border-color: rgba(255, 138, 179, 0.5);
+  box-shadow: 0 0 40px rgba(255, 77, 141, 0.28);
+}
+
+.celebrate-art {
+  width: min(220px, 70%);
+  margin: 0 auto 8px;
+  border-radius: 20px;
+  animation: celebrate-thumb 0.7s ease-out 0.08s both;
+}
+
+.celebrate-card-week .celebrate-art {
+  width: min(260px, 82%);
+}
+
+.celebrate-card-week .celebrate-kicker {
+  color: var(--pink-soft);
+}
+
+.celebrate-card-week h2 {
+  font-size: 32px;
+  color: #ffe0ef;
+  text-shadow: 0 0 18px rgba(255, 77, 141, 0.55);
+}
+
+.celebrate-kicker {
+  color: #ffc36a;
+  font-size: 13px;
+}
+
+.celebrate-card h2 {
+  margin: 6px 0 4px;
+  font-size: 40px;
+  font-weight: 900;
+  color: #ffe27a;
+  text-shadow: 0 0 18px rgba(255, 160, 40, 0.65);
+}
+
+.celebrate-sub {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffd36a;
+  box-shadow: 0 0 10px #ffb020;
+  animation: spark-pop 0.9s ease-out both;
+}
+
+.spark-1 {
+  top: 22px;
+  left: 28px;
+}
+
+.spark-2 {
+  top: 36px;
+  right: 32px;
+  animation-delay: 0.12s;
+}
+
+.spark-3 {
+  bottom: 88px;
+  left: 24px;
+  animation-delay: 0.2s;
+}
+
+.spark-4 {
+  bottom: 76px;
+  right: 28px;
+  animation-delay: 0.28s;
+}
+
+@keyframes celebrate-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes celebrate-thumb {
+  0% {
+    transform: translateY(16px) scale(0.86);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spark-pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}

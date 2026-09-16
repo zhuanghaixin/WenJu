@@ -413,6 +413,23 @@ export function todayKey(date = new Date()): string {
   return `${year}-${month}-${day}`
 }
 
+export function weekDateKeys(date = new Date()): string[] {
+  const local = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+  const weekday = local.getDay()
+  const mondayOffset = weekday === 0 ? -6 : 1 - weekday
+  const monday = new Date(local)
+  monday.setDate(local.getDate() + mondayOffset)
+  return Array.from({ length: 7 }, (_, index) => {
+    const next = new Date(monday)
+    next.setDate(monday.getDate() + index)
+    return todayKey(next)
+  })
+}
+
+export function isAllDaysComplete(merged: Record<string, boolean>): boolean {
+  return days.every((day) => day.exercises.every((item) => merged[item.id]))
+}
+
 export function formatDateLabel(date = new Date()): string {
   const week = ['日', '一', '二', '三', '四', '五', '六'][date.getDay()]
   return `${date.getMonth() + 1}月${date.getDate()}日 周${week}`

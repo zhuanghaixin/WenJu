@@ -1,3 +1,5 @@
+import { weekDateKeys } from '@/data/program'
+
 const DB_NAME = 'wenju'
 const STORE = 'checks'
 const LS_KEY = 'wenju-checks-v1'
@@ -30,6 +32,20 @@ function openDb(): Promise<IDBDatabase> {
     request.onsuccess = () => resolve(request.result)
     request.onerror = () => reject(request.error)
   })
+}
+
+export function peekAllChecks(): Record<string, CheckMap> {
+  return readLocal()
+}
+
+export function mergeWeekChecks(live: CheckMap): CheckMap {
+  const all = peekAllChecks()
+  const merged: CheckMap = {}
+  for (const key of weekDateKeys()) {
+    Object.assign(merged, all[key] ?? {})
+  }
+  Object.assign(merged, live)
+  return merged
 }
 
 export async function loadChecks(date: string): Promise<CheckMap> {

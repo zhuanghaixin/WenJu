@@ -149,3 +149,28 @@
   - `src/components/checklist/ExerciseSheet.tsx`
   - `src/styles.css`、`vite.config.ts`、`需求.md`、`log.md`
 
+## 2026-09-17 完成庆祝弹窗
+
+- 会话的主要目的：当天动作全部勾完时弹出悟空竖大拇指「做得好」
+- 完成的主要任务：完成瞬间弹出动画卡片；刷新已完成页不重复弹
+- 关键决策和解决方案：用上一次完成数对比，只有从 5/6 到 6/6 才出现
+- 使用的技术栈：React、CSS animation
+- 修改了哪些文件：
+  - `src/components/celebrate/CelebrateModal.tsx`
+  - `src/pages/TodayPage.tsx`
+  - `public/effects/goku-thumbsup.png`
+  - `src/styles.css`、`vite.config.ts`、`需求.md`、`log.md`
+
+## 2026-09-17 三练完成庆祝
+
+- 会话的主要目的：本周 A/B/C 都完成后弹出布尔玛亲吻害羞贝吉塔
+- 完成的主要任务：按自然周合并打卡；第三练勾完出粉色弹窗，文案「你真是太棒了，贝吉塔」
+- 关键决策和解决方案：单日完成仍是悟空；三练齐了替换成亲吻图，不叠两个弹窗
+- 使用的技术栈：React、CSS animation、本周日期合并
+- 修改了哪些文件：
+  - `src/components/celebrate/CelebrateModal.tsx`
+  - `src/pages/TodayPage.tsx`
+  - `src/data/program.ts`、`src/lib/db.ts`
+  - `public/effects/bulma-kiss-vegeta.png`
+  - `src/styles.css`、`需求.md`、`log.md`
+
