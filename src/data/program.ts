@@ -27,7 +27,7 @@ export const days: TrainingDay[] = [
     title: '腿部起身力量',
     subtitle: '更强的下肢，才能把喜欢的人稳稳举起',
     focus: '练下肢站得住，打好举起的基础',
-    poster: '/posters/day-a.jpg',
+    poster: './posters/day-a.jpg',
     generalCues: [
       '核心收紧，背部挺直',
       '下蹲到大腿接近平行',
@@ -132,7 +132,7 @@ export const days: TrainingDay[] = [
     title: '后侧链 + 抱持能力',
     subtitle: '强大的后侧链，是让你稳稳抱住喜欢的人的力量',
     focus: '练整体发力与前抱稳定',
-    poster: '/posters/day-b.jpg',
+    poster: './posters/day-b.jpg',
     generalCues: [
       '杠铃贴近身体',
       '背部保持中立',
@@ -237,7 +237,7 @@ export const days: TrainingDay[] = [
     title: '综合稳定',
     subtitle: '更稳的我，才能把你抱得更久',
     focus: '提高控制力，抱起来更稳',
-    poster: '/posters/day-c.jpg',
+    poster: './posters/day-c.jpg',
     generalCues: [
       '全程核心收紧',
       '动作别晃',
@@ -391,7 +391,7 @@ const liftDonts = [
 ]
 
 export const liftGuide = {
-  poster: '/posters/lift-guide.jpg',
+  poster: './posters/lift-guide.jpg',
   title: '正面抱起',
   principle: '让她靠近你，用腿和臀发力，稳稳抱起，彼此更安心。',
   note: '第 9 周以后再保守接触真人动作。安全第一。',
@@ -407,7 +407,7 @@ export const liftGuide = {
 }
 
 export const armLiftGuide = {
-  poster: '/posters/lift-guide-arm.png',
+  poster: './posters/lift-guide-arm.png',
   title: '背对平举',
   principle: '两个人脸朝同一边。你的手臂弯成 90°，她的背靠在你的小臂上，用腿和臀站起。',
   note: '第 9 周以后再保守接触真人动作。安全第一。这个比正面抱更费核心和平衡。',
@@ -425,15 +425,15 @@ export const armLiftGuide = {
 export const liftGuides = [liftGuide, armLiftGuide]
 
 export const posters = [
-  { src: '/posters/cover.jpg', label: '封面', page: '1/9' },
-  { src: '/posters/overview.jpg', label: '每周安排', page: '2/9' },
-  { src: '/posters/day-a.jpg', label: 'A 日', page: '3/9' },
-  { src: '/posters/day-b.jpg', label: 'B 日', page: '4/9' },
-  { src: '/posters/day-c.jpg', label: 'C 日', page: '5/9' },
-  { src: '/posters/weeks.jpg', label: '12 周', page: '6/9' },
-  { src: '/posters/lift-guide.jpg', label: '正面抱起', page: '7/9' },
-  { src: '/posters/lift-guide-arm.png', label: '背对平举', page: '8/9' },
-  { src: '/posters/targets.jpg', label: '目标参考', page: '9/9' },
+  { src: './posters/cover.jpg', label: '封面', page: '1/9' },
+  { src: './posters/overview.jpg', label: '每周安排', page: '2/9' },
+  { src: './posters/day-a.jpg', label: 'A 日', page: '3/9' },
+  { src: './posters/day-b.jpg', label: 'B 日', page: '4/9' },
+  { src: './posters/day-c.jpg', label: 'C 日', page: '5/9' },
+  { src: './posters/weeks.jpg', label: '12 周', page: '6/9' },
+  { src: './posters/lift-guide.jpg', label: '正面抱起', page: '7/9' },
+  { src: './posters/lift-guide-arm.png', label: '背对平举', page: '8/9' },
+  { src: './posters/targets.jpg', label: '目标参考', page: '9/9' },
 ]
 
 export function posterIndex(src: string): number {

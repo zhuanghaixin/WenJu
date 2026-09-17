@@ -354,3 +354,33 @@
   - `src/components/checklist/ExerciseSheet.tsx`
   - `需求.md`、`log.md`
 
+## 2026-09-17 线上路由要不要改代码
+
+- 会话的主要目的：分析 WorkBuddy 上线后 /plan 刷新 404，src 还要不要改
+- 完成的主要任务：对照 src / dist / site-release / 线上；不改代码
+- 关键决策和解决方案：本地 src 已是 HashRouter；线上仍是旧 History 包所以直链 404。要修的是重新部署当前构建，或托管回退，不是再改路由代码
+- 使用的技术栈：React Router、Vite PWA、静态托管
+- 修改了哪些文件：
+  - `log.md`
+
+## 2026-09-17 手机删数字后输不进去
+
+- 会话的主要目的：修复组间秒数/重量在手机上删除后无法改数字
+- 完成的主要任务：输入改为文本草稿，删空不再立刻写回 90；失焦再规范化
+- 关键决策和解决方案：iOS 的 type=number 受控框删空会被父状态顶回去，键盘卡住；用 type=text + inputMode + 本地字符串
+- 使用的技术栈：React Hooks
+- 修改了哪些文件：
+  - `src/components/checklist/ExerciseSheet.tsx`
+  - `src/pages/TodayPage.tsx`
+  - `src/styles.css`
+  - `log.md`
+
+## 2026-09-17 提交源码
+
+- 会话的主要目的：按用户要求提交当前改动
+- 完成的主要任务：提交 Hash 路由、相对资源路径、手机数字输入修复；不提交 site-release 构建目录
+- 关键决策和解决方案：部署副本与 dist 一样由 build 生成，不进仓库
+- 使用的技术栈：Git
+- 修改了哪些文件：
+  - `log.md`
+

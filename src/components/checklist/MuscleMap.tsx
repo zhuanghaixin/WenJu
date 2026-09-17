@@ -5,7 +5,7 @@ type MuscleMapProps = {
 }
 
 function BodyFigure({ view, marks }: { view: MuscleView; marks: MuscleRegion[] }) {
-  const src = view === 'front' ? '/muscles/vegeta-anatomy-front.png' : '/muscles/vegeta-anatomy-back.png'
+  const src = view === 'front' ? './muscles/vegeta-anatomy-front.png' : './muscles/vegeta-anatomy-back.png'
 
   return (
     <figure className="muscle-fig">

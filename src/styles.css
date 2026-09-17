@@ -359,6 +359,7 @@ h2 {
   background: rgba(8, 4, 14, 0.45);
   color: var(--cream);
   font: inherit;
+  font-size: 16px;
 }
 
 .unit-segment {

@@ -119,8 +119,8 @@ export function TodayPage() {
           exercise={openExercise}
           pref={getPref(openExercise.id)}
           onPrefChange={(pref) => updatePref(openExercise.id, pref)}
-          onStartRest={() => {
-            void restTimer.start(getPref(openExercise.id).restSec, openExercise.name)
+          onStartRest={(seconds) => {
+            void restTimer.start(seconds, openExercise.name)
             setOpenExercise(null)
           }}
           onClose={() => setOpenExercise(null)}

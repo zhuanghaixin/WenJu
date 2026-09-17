@@ -39,7 +39,7 @@ export function CelebrateModal({ variant, dayLabel, onClose }: CelebrateModalPro
           <>
             <img
               className="celebrate-art"
-              src="/effects/bulma-kiss-vegeta.png"
+              src="./effects/bulma-kiss-vegeta.png"
               alt="布尔玛亲吻害羞的贝吉塔"
             />
             <p className="celebrate-kicker">本周 A · B · C 都完成</p>
@@ -48,7 +48,7 @@ export function CelebrateModal({ variant, dayLabel, onClose }: CelebrateModalPro
           </>
         ) : (
           <>
-            <img className="celebrate-art" src="/effects/goku-thumbsup.png" alt="孙悟空竖起大拇指" />
+            <img className="celebrate-art" src="./effects/goku-thumbsup.png" alt="孙悟空竖起大拇指" />
             <p className="celebrate-kicker">{dayLabel} 全部完成</p>
             <h2 id="celebrate-title">做得好</h2>
             <p className="celebrate-sub">比昨天的自己更强一点点。</p>

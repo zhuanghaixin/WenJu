@@ -4,6 +4,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
+  // 相对路径 base：使产物可部署到任意子路径（如资料库 page 的 /page/{id}/{version}/ 下）
+  base: './',
   plugins: [
     react(),
     VitePWA({
@@ -17,7 +19,7 @@ export default defineConfig({
         background_color: '#12081a',
         display: 'standalone',
         lang: 'zh-CN',
-        start_url: '/',
+        start_url: './',
         icons: [
           {
             src: 'icons/icon.svg',
