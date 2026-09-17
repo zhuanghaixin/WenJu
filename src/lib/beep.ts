@@ -49,12 +49,16 @@ export async function notifyRestDone(name: string) {
     await Notification.requestPermission()
   }
   if (Notification.permission !== 'granted') return
-  const notification = new Notification('组间休息结束', {
-    body: `${name} 可以开始下一组了`,
-    silent: false,
-    tag: 'wenju-rest',
-  })
-  window.setTimeout(() => notification.close(), 6000)
+  try {
+    const notification = new Notification('组间休息结束', {
+      body: `${name} 可以开始下一组了`,
+      silent: false,
+      tag: 'wenju-rest',
+    })
+    window.setTimeout(() => notification.close(), 6000)
+  } catch {
+    // Safari 普通标签页可能不允许 Notification
+  }
 }
 
 export async function ensureNotifyPermission() {

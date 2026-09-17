@@ -122,6 +122,7 @@ export function ExerciseSheet({
           <button type="button" className="primary-btn" onClick={onStartRest}>
             开始 {pref.restSec} 秒休息
           </button>
+          <p className="hint">重量和组间休息会记住，下周一只清空勾选。</p>
         </section>
 
         <MuscleMap muscles={exercise.muscles} />

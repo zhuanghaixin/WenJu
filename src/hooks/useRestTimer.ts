@@ -39,7 +39,7 @@ export function useRestTimer() {
 
   async function start(seconds: number, name: string) {
     await unlockAudio()
-    await ensureNotifyPermission()
+    void ensureNotifyPermission()
     firedRef.current = false
     setLabel(name)
     setEndAt(Date.now() + normalizeRestSec(seconds) * 1000)

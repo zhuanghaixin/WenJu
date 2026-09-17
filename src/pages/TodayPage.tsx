@@ -76,7 +76,7 @@ export function TodayPage() {
               </span>
             )
           })}
-          <span className="week-reset">下周一清空</span>
+          <span className="week-reset">下周一只清勾选</span>
         </p>
         <div className="progress-bar" aria-hidden>
           <span style={{ width: `${(doneCount / day.exercises.length) * 100}%` }} />

@@ -321,3 +321,36 @@
   - `public/posters/lift-guide-arm.png`
   - `log.md`
 
+## 2026-09-17 重量单位 + 组间计时
+
+- 会话的主要目的：每个动作可自己设公斤/磅；组间休息倒计时，到点有声音和通知
+- 完成的主要任务：清单和要领抽屉接上偏好；计时条可跳过；构建通过；浏览器点过换单位、10 秒倒计时、计划/要领页
+- 关键决策和解决方案：重量和组间秒数存在 `localStorage`，和本周勾选分开；计时用结束时间戳，不阻塞在通知授权上；到点三声蜂鸣 + 震动 + 系统通知
+- 使用的技术栈：React 19、TypeScript、Vite PWA、Web Audio、Notification
+- 修改了哪些文件：
+  - `src/lib/prefs.ts`、`src/lib/beep.ts`
+  - `src/hooks/useExercisePrefs.ts`、`src/hooks/useRestTimer.ts`
+  - `src/components/checklist/ExerciseRow.tsx`、`ExerciseSheet.tsx`、`RestTimerBar.tsx`
+  - `src/pages/TodayPage.tsx`、`src/styles.css`
+  - `需求.md`、`log.md`
+
+## 2026-09-17 后台检查命令失败说明
+
+- 会话的主要目的：告知一次 browser-use CLI 检查失败
+- 完成的主要任务：确认失败原因是远程调试授权/点错标签/超时，不推翻已完成的页面验证
+- 关键决策和解决方案：不重跑该命令；以之后在 5173 上手动点过的结果为准
+- 使用的技术栈：无代码改动
+- 修改了哪些文件：
+  - `log.md`
+
+## 2026-09-17 周重置只清勾选
+
+- 会话的主要目的：确认下周一重置不要清重量和组间休息
+- 完成的主要任务：核对已是两套存储；文案改成「下周一只清勾选」，要领里补一句说明
+- 关键决策和解决方案：勾选按周 key，偏好按动作 id，本来就不会一起清
+- 使用的技术栈：React、localStorage
+- 修改了哪些文件：
+  - `src/pages/TodayPage.tsx`
+  - `src/components/checklist/ExerciseSheet.tsx`
+  - `需求.md`、`log.md`
+
