@@ -17,3 +17,4 @@ npm run dev
 
 - [需求.md](./需求.md)
 - [doc/实现总结.md](./doc/实现总结.md)
+- [doc/从想法到上线.md](./doc/从想法到上线.md)
