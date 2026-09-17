@@ -8,9 +8,10 @@ type ExerciseRowProps = {
   onToggle: () => void
   onOpen: () => void
   onRest: () => void
+  swapped?: boolean
 }
 
-export function ExerciseRow({ exercise, pref, done, onToggle, onOpen, onRest }: ExerciseRowProps) {
+export function ExerciseRow({ exercise, pref, done, onToggle, onOpen, onRest, swapped }: ExerciseRowProps) {
   const load = formatLoad(pref)
 
   return (
@@ -33,7 +34,7 @@ export function ExerciseRow({ exercise, pref, done, onToggle, onOpen, onRest }: 
             {load ? ` · ${load}` : ''}
           </span>
         </span>
-        <span className="exercise-more">要领</span>
+        <span className="exercise-more">{swapped ? '已替换' : '要领'}</span>
       </button>
       <button type="button" className="rest-btn" onClick={onRest} aria-label={`${exercise.name}开始组间休息`}>
         休息

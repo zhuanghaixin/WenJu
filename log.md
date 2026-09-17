@@ -406,3 +406,17 @@
   - `README.md`
   - `log.md`
 
+## 2026-09-18 新海报动作库 + 本馆器械
+
+- 会话的主要目的：换成 10 图新计划，并按健身房器械自动替换动作；评估要不要第 4 个 Tab
+- 完成的主要任务：更新海报与动作库；计划页增加器械勾选；今日清单按本馆显示替代；要领改为三种举法
+- 关键决策和解决方案：不新增 Tab。器械是一次设置，放计划页。默认全勾等于海报原计划；取消某器械走替代链
+- 使用的技术栈：React Context、localStorage、Vite 静态资源
+- 修改了哪些文件：
+  - `public/posters/*`、`public/exercises/*`
+  - `src/data/program.ts`、`src/data/equipment.ts`、`src/data/muscles.ts`
+  - `src/hooks/useGymEquipment.tsx`
+  - `src/components/plan/GymEquipmentCard.tsx`
+  - `src/pages/TodayPage.tsx`、`PlanPage.tsx`、`GuidePage.tsx`、`App.tsx`
+  - `src/styles.css`、`需求.md`、`log.md`
+

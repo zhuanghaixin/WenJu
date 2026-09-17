@@ -10,7 +10,7 @@ export function GuidePage() {
       <header className="page-head">
         <p className="eyebrow">抱持要领</p>
         <h1>怎么更稳更安全地举起她</h1>
-        <p className="lead">两种举法：正面抱起，或她背对你、手臂弯 90° 托住。</p>
+        <p className="lead">三种举法：公主抱、贴身紧抱、坐姿托举。先练力量，再非常保守地接触真人。</p>
         <p className="warn">第 9 周以后再保守接触真人动作。安全第一。</p>
       </header>
 

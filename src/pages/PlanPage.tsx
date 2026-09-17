@@ -1,9 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { GymEquipmentCard } from '@/components/plan/GymEquipmentCard'
 import { PosterLightbox } from '@/components/media/PosterLightbox'
-import { posters, targets, weekPhases, weekPlan } from '@/data/program'
+import { countSwaps, posters, targets, weekPhases, weekPlan } from '@/data/program'
+import { useGymEquipment } from '@/hooks/useGymEquipment'
 
 export function PlanPage() {
   const [poster, setPoster] = useState<string | null>(null)
+  const [params] = useSearchParams()
+  const { flags, owned, toggle } = useGymEquipment()
+  const swapCount = useMemo(() => countSwaps(owned), [owned])
+
+  useEffect(() => {
+    if (params.get('focus') !== 'gym') return
+    document.getElementById('gym')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, [params])
 
   return (
     <div className="page">
@@ -13,6 +24,8 @@ export function PlanPage() {
         <p className="lead">{weekPlan.recommend}</p>
         <p className="warn">{weekPlan.warning}</p>
       </header>
+
+      <GymEquipmentCard flags={flags} swapCount={swapCount} onToggle={toggle} />
 
       <section className="grid-3">
         {weekPlan.cards.map((card) => (

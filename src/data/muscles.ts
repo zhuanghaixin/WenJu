@@ -12,10 +12,11 @@ export type MuscleRegion = {
 
 export const muscleRegions: MuscleRegion[] = [
   { id: 'quads', label: '股四头', view: 'front', keywords: ['股四头', '前腿', '臀腿', '腿'], x: 36, y: 56, align: 'left' },
-  { id: 'hips', label: '髋', view: 'front', keywords: ['髋'], x: 64, y: 44, align: 'right' },
+  { id: 'hips', label: '髋', view: 'front', keywords: ['髋', '髋外展', '髋内收', '臀中肌'], x: 64, y: 44, align: 'right' },
   { id: 'abs', label: '核心', view: 'front', keywords: ['核心', '腹肌', '稳定性'], x: 36, y: 36, align: 'left' },
   { id: 'obliques', label: '侧链', view: 'front', keywords: ['侧链', '抗旋转'], x: 32, y: 37, align: 'left' },
-  { id: 'arms', label: '手臂', view: 'front', keywords: ['手臂'], x: 24, y: 30, align: 'left' },
+  { id: 'arms', label: '手臂', view: 'front', keywords: ['手臂', '肱二头'], x: 24, y: 30, align: 'left' },
+  { id: 'shoulders', label: '肩', view: 'front', keywords: ['肩'], x: 68, y: 22, align: 'right' },
   { id: 'forearms', label: '握力', view: 'front', keywords: ['握力'], x: 20, y: 40, align: 'left' },
   { id: 'glutes', label: '臀', view: 'back', keywords: ['臀', '臀大肌', '臀腿'], x: 66, y: 46, align: 'right' },
   { id: 'hamstrings', label: '腘绳肌', view: 'back', keywords: ['腘绳肌'], x: 34, y: 58, align: 'left' },

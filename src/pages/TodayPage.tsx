@@ -1,21 +1,35 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { CelebrateModal } from '@/components/celebrate/CelebrateModal'
 import { DaySwitcher } from '@/components/checklist/DaySwitcher'
 import { ExerciseRow } from '@/components/checklist/ExerciseRow'
 import { ExerciseSheet } from '@/components/checklist/ExerciseSheet'
 import { RestTimerBar } from '@/components/checklist/RestTimerBar'
 import { PosterLightbox } from '@/components/media/PosterLightbox'
-import { days, formatDateLabel, getDay, isAllDaysComplete, weekKey, type Exercise } from '@/data/program'
+import {
+  countSwaps,
+  days,
+  formatDateLabel,
+  getDay,
+  isAllDaysComplete,
+  resolveDay,
+  weekKey,
+  type Exercise,
+} from '@/data/program'
 import { useChecklist } from '@/hooks/useChecklist'
 import { useExercisePrefs } from '@/hooks/useExercisePrefs'
+import { useGymEquipment } from '@/hooks/useGymEquipment'
 import { useRestTimer } from '@/hooks/useRestTimer'
 import { useTrainingDay } from '@/hooks/useTrainingDay'
 
 export function TodayPage() {
   const weekId = weekKey()
   const { dayId, setDayId, suggested } = useTrainingDay()
-  const day = getDay(dayId)
+  const { owned } = useGymEquipment()
+  const rawDay = getDay(dayId)
+  const day = useMemo(() => resolveDay(rawDay, owned), [rawDay, owned])
   const exerciseIds = useMemo(() => day.exercises.map((item) => item.id), [day])
+  const swapCount = useMemo(() => countSwaps(owned), [owned])
   const { checks, toggle, doneCount, ready } = useChecklist(weekId, exerciseIds)
   const { getPref, updatePref } = useExercisePrefs()
   const restTimer = useRestTimer()
@@ -36,11 +50,11 @@ export function TodayPage() {
     previousDone.current = doneCount
     if (previous === null) return
     if (previous < total && doneCount === total) {
-      const weekDone = isAllDaysComplete(checks)
+      const weekDone = isAllDaysComplete(checks, owned)
       setCelebrateVariant(weekDone ? 'week' : 'day')
       setShowCelebrate(true)
     }
-  }, [doneCount, ready, exerciseIds.length, dayId, checks])
+  }, [doneCount, ready, exerciseIds.length, dayId, checks, owned])
 
   const restHint =
     suggested === null
@@ -53,9 +67,9 @@ export function TodayPage() {
     <div className={restTimer.running ? 'page has-rest-bar' : 'page'}>
       <header className="hero">
         <button type="button" className="hero-poster" onClick={() => setShowPoster(true)}>
-          <img src={day.poster} alt={`${day.id}日训练海报，点开可左右滑动看 1 到 9 图`} />
+          <img src={day.poster} alt={`${day.id}日训练海报，点开可左右滑动看 1 到 10 图`} />
         </button>
-        <p className="hint">点海报可左右滑动，看完整 9 图</p>
+        <p className="hint">点海报可左右滑动，看完整 10 图</p>
         <p className="eyebrow">{formatDateLabel()}</p>
         <h1>
           {day.id}日
@@ -63,13 +77,18 @@ export function TodayPage() {
         </h1>
         <p className="lead">{day.subtitle}</p>
         <p className="hint">{restHint}</p>
+        <p className="hint">
+          <Link to="/plan?focus=gym" className="text-link">
+            {swapCount === 0 ? '按本馆器械显示动作，去设置' : `已替换 ${swapCount} 个动作，去改器械`}
+          </Link>
+        </p>
         <DaySwitcher value={dayId} suggested={suggested} onChange={setDayId} />
         <p className="progress">
           本周 {day.id}日 {doneCount}/{day.exercises.length}
         </p>
         <p className="week-status">
           {days.map((item) => {
-            const finished = item.exercises.every((exercise) => checks[exercise.id])
+            const finished = resolveDay(item, owned).exercises.every((exercise) => checks[exercise.id])
             return (
               <span key={item.id} className={finished ? 'is-done' : undefined}>
                 {item.id}日{finished ? '已练' : '未练'}
@@ -84,10 +103,11 @@ export function TodayPage() {
       </header>
 
       <section className="card-list">
-        {day.exercises.map((exercise) => (
+        {day.exercises.map((exercise, index) => (
           <ExerciseRow
             key={exercise.id}
             exercise={exercise}
+            swapped={exercise.id !== rawDay.slots[index]?.options[0]?.id}
             pref={getPref(exercise.id)}
             done={Boolean(checks[exercise.id])}
             onToggle={() => {
