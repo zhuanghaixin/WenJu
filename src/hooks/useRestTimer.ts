@@ -37,8 +37,8 @@ export function useRestTimer() {
     }
   }, [endAt, label])
 
-  async function start(seconds: number, name: string) {
-    await unlockAudio()
+  function start(seconds: number, name: string) {
+    void unlockAudio()
     void ensureNotifyPermission()
     firedRef.current = false
     setLabel(name)

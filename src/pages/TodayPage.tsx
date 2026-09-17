@@ -15,7 +15,9 @@ import {
   resolveDay,
   weekKey,
   type Exercise,
+  type TrainingDay,
 } from '@/data/program'
+import { formatLoad, loadPref } from '@/lib/prefs'
 import { useChecklist } from '@/hooks/useChecklist'
 import { useExercisePrefs } from '@/hooks/useExercisePrefs'
 import { useGymEquipment } from '@/hooks/useGymEquipment'
@@ -110,12 +112,10 @@ export function TodayPage() {
             swapped={exercise.id !== rawDay.slots[index]?.options[0]?.id}
             pref={getPref(exercise.id)}
             done={Boolean(checks[exercise.id])}
-            onToggle={() => {
-              void toggle(exercise.id)
-            }}
+            onToggle={() => toggle(exercise.id)}
             onOpen={() => setOpenExercise(exercise)}
             onRest={() => {
-              void restTimer.start(getPref(exercise.id).restSec, exercise.name)
+              restTimer.start(getPref(exercise.id).restSec, exercise.name)
             }}
           />
         ))}
@@ -138,9 +138,10 @@ export function TodayPage() {
           day={day}
           exercise={openExercise}
           pref={getPref(openExercise.id)}
+          swapHint={swapHintFor(openExercise.id, rawDay)}
           onPrefChange={(pref) => updatePref(openExercise.id, pref)}
           onStartRest={(seconds) => {
-            void restTimer.start(seconds, openExercise.name)
+            restTimer.start(seconds, openExercise.name)
             setOpenExercise(null)
           }}
           onClose={() => setOpenExercise(null)}
@@ -158,4 +159,15 @@ export function TodayPage() {
       ) : null}
     </div>
   )
+}
+
+function swapHintFor(exerciseId: string, rawDay: TrainingDay): string | null {
+  const slot = rawDay.slots.find((item) => item.options.some((option) => option.id === exerciseId))
+  const source = slot?.options[0]
+  if (!source || source.id === exerciseId) return null
+  const load = formatLoad(loadPref(source.id))
+  if (load) {
+    return `这条是从「${source.name}」换来的，你那边上次用 ${load}。不自动换算，这条自己再记。`
+  }
+  return `这条是从「${source.name}」换来的。那边还没记重量，这条自己记。`
 }

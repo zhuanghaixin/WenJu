@@ -11,7 +11,15 @@ type ExerciseRowProps = {
   swapped?: boolean
 }
 
-export function ExerciseRow({ exercise, pref, done, onToggle, onOpen, onRest, swapped }: ExerciseRowProps) {
+export function ExerciseRow({
+  exercise,
+  pref,
+  done,
+  onToggle,
+  onOpen,
+  onRest,
+  swapped,
+}: ExerciseRowProps) {
   const load = formatLoad(pref)
 
   return (
@@ -30,13 +38,18 @@ export function ExerciseRow({ exercise, pref, done, onToggle, onOpen, onRest, sw
         <span className="exercise-meta">
           <span className="exercise-name">{exercise.name}</span>
           <span className="exercise-dose">
-            {exercise.dose} · {exercise.muscles}
+            {exercise.dose}
             {load ? ` · ${load}` : ''}
           </span>
         </span>
         <span className="exercise-more">{swapped ? '已替换' : '要领'}</span>
       </button>
-      <button type="button" className="rest-btn" onClick={onRest} aria-label={`${exercise.name}开始组间休息`}>
+      <button
+        type="button"
+        className="rest-btn"
+        onClick={onRest}
+        aria-label={`${exercise.name}开始休息`}
+      >
         休息
       </button>
     </div>

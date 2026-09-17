@@ -470,6 +470,16 @@ h2 {
   font-weight: 700;
 }
 
+.swap-hint {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 77, 141, 0.1);
+  color: var(--cream);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .page.has-rest-bar {
   padding-bottom: 84px;
 }

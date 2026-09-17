@@ -15,6 +15,7 @@ type ExerciseSheetProps = {
   day: TrainingDay
   exercise: Exercise
   pref: ExercisePref
+  swapHint?: string | null
   onPrefChange: (pref: ExercisePref) => void
   onStartRest: (seconds: number) => void
   onClose: () => void
@@ -24,6 +25,7 @@ export function ExerciseSheet({
   day,
   exercise,
   pref,
+  swapHint,
   onPrefChange,
   onStartRest,
   onClose,
@@ -107,6 +109,8 @@ export function ExerciseSheet({
         <p className="sheet-dose">
           {exercise.dose} · {exercise.muscles}
         </p>
+
+        {swapHint ? <p className="swap-hint">{swapHint}</p> : null}
 
         <section className="load-card">
           <h3>今天用多重</h3>

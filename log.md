@@ -420,3 +420,25 @@
   - `src/pages/TodayPage.tsx`、`PlanPage.tsx`、`GuidePage.tsx`、`App.tsx`
   - `src/styles.css`、`需求.md`、`log.md`
 
+## 2026-09-18 还可以完善什么
+
+- 会话的主要目的：讨论稳举下一步值得做的功能，不写代码
+- 完成的主要任务：按产品边界列出优先三项，以及明确先别做的
+- 关键决策和解决方案：继续本地清单，不回头做热力图/账号
+- 使用的技术栈：无
+- 修改了哪些文件：
+  - `log.md`
+
+## 2026-09-18 撤回组数统计和 JSON 备份
+
+- 会话的主要目的：按反馈去掉组进度计数和导入导出
+- 完成的主要任务：清单恢复圆圈勾选 + 行内「休息」；计划页去掉备份；换器械重量提示保留
+- 关键决策和解决方案：剂量已写 4×5，不必再记 2/4；无账号单机清单不做文件备份
+- 使用的技术栈：React + TypeScript
+- 修改了哪些文件：
+  - `src/hooks/useChecklist.ts`
+  - `src/components/checklist/ExerciseRow.tsx`、`ExerciseSheet.tsx`
+  - `src/pages/TodayPage.tsx`、`PlanPage.tsx`
+  - `src/styles.css`、`需求.md`、`log.md`
+  - 删除 `src/lib/sets.ts`、`src/lib/dose.ts`、`src/lib/backup.ts`、`src/components/plan/BackupCard.tsx`
+
