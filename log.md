@@ -442,3 +442,14 @@
   - `src/styles.css`、`需求.md`、`log.md`
   - 删除 `src/lib/sets.ts`、`src/lib/dose.ts`、`src/lib/backup.ts`、`src/components/plan/BackupCard.tsx`
 
+## 2026-09-18 要不要更新 doc / site-release
+
+- 会话的主要目的：判断实现文档和发布副本要不要跟着这次改动更新
+- 完成的主要任务：实现总结补上 10 海报、器械替代、周勾选；上线文档只加器械一行；不动 site-release
+- 关键决策和解决方案：doc 记当前产品事实；site-release 是上线拷贝，只有要发布时才 build 覆盖，不手改
+- 使用的技术栈：Markdown
+- 修改了哪些文件：
+  - `doc/实现总结.md`
+  - `doc/从想法到上线.md`
+  - `log.md`
+
