@@ -235,7 +235,7 @@ h2 {
 
 .exercise-row {
   display: grid;
-  grid-template-columns: 52px 1fr;
+  grid-template-columns: 52px 1fr auto;
   align-items: stretch;
   overflow: hidden;
 }
@@ -315,6 +315,125 @@ h2 {
 
 .exercise-more {
   color: var(--pink-soft);
+}
+
+.rest-btn {
+  min-width: 52px;
+  min-height: 68px;
+  padding: 0 10px;
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: rgba(255, 77, 141, 0.1);
+  color: var(--pink-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.load-card {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+}
+
+.load-card h3 {
+  font-size: 13px;
+  color: var(--pink-soft);
+}
+
+.load-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.load-field input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(8, 4, 14, 0.45);
+  color: var(--cream);
+  font: inherit;
+}
+
+.unit-segment {
+  grid-template-columns: 1fr 1fr;
+  min-width: 140px;
+}
+
+.rest-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.chip {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.chip.is-active {
+  background: var(--pink);
+  border-color: var(--pink);
+  color: #2a0816;
+  font-weight: 700;
+}
+
+.rest-custom {
+  width: 84px;
+}
+
+.rest-bar {
+  position: fixed;
+  left: 50%;
+  bottom: calc(72px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(488px, calc(100% - 24px));
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(32, 18, 46, 0.94);
+  border: 1px solid rgba(255, 77, 141, 0.35);
+  box-shadow: var(--shadow);
+}
+
+.rest-bar-kicker {
+  color: var(--pink-soft);
+  font-size: 12px;
+}
+
+.rest-bar-time {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.ghost-btn {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--cream);
+  font-weight: 700;
+}
+
+.page.has-rest-bar {
+  padding-bottom: 84px;
 }
 
 .note-card,

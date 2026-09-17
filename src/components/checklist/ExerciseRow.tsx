@@ -1,13 +1,18 @@
 import type { Exercise } from '@/data/program'
+import { formatLoad, type ExercisePref } from '@/lib/prefs'
 
 type ExerciseRowProps = {
   exercise: Exercise
+  pref: ExercisePref
   done: boolean
   onToggle: () => void
   onOpen: () => void
+  onRest: () => void
 }
 
-export function ExerciseRow({ exercise, done, onToggle, onOpen }: ExerciseRowProps) {
+export function ExerciseRow({ exercise, pref, done, onToggle, onOpen, onRest }: ExerciseRowProps) {
+  const load = formatLoad(pref)
+
   return (
     <div className={done ? 'exercise-row is-done' : 'exercise-row'}>
       <button
@@ -25,9 +30,13 @@ export function ExerciseRow({ exercise, done, onToggle, onOpen }: ExerciseRowPro
           <span className="exercise-name">{exercise.name}</span>
           <span className="exercise-dose">
             {exercise.dose} · {exercise.muscles}
+            {load ? ` · ${load}` : ''}
           </span>
         </span>
         <span className="exercise-more">要领</span>
+      </button>
+      <button type="button" className="rest-btn" onClick={onRest} aria-label={`${exercise.name}开始组间休息`}>
+        休息
       </button>
     </div>
   )

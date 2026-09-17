@@ -3,9 +3,12 @@ import { CelebrateModal } from '@/components/celebrate/CelebrateModal'
 import { DaySwitcher } from '@/components/checklist/DaySwitcher'
 import { ExerciseRow } from '@/components/checklist/ExerciseRow'
 import { ExerciseSheet } from '@/components/checklist/ExerciseSheet'
+import { RestTimerBar } from '@/components/checklist/RestTimerBar'
 import { PosterLightbox } from '@/components/media/PosterLightbox'
 import { days, formatDateLabel, getDay, isAllDaysComplete, weekKey, type Exercise } from '@/data/program'
 import { useChecklist } from '@/hooks/useChecklist'
+import { useExercisePrefs } from '@/hooks/useExercisePrefs'
+import { useRestTimer } from '@/hooks/useRestTimer'
 import { useTrainingDay } from '@/hooks/useTrainingDay'
 
 export function TodayPage() {
@@ -14,6 +17,8 @@ export function TodayPage() {
   const day = getDay(dayId)
   const exerciseIds = useMemo(() => day.exercises.map((item) => item.id), [day])
   const { checks, toggle, doneCount, ready } = useChecklist(weekId, exerciseIds)
+  const { getPref, updatePref } = useExercisePrefs()
+  const restTimer = useRestTimer()
   const [openExercise, setOpenExercise] = useState<Exercise | null>(null)
   const [showPoster, setShowPoster] = useState(false)
   const [showCelebrate, setShowCelebrate] = useState(false)
@@ -45,7 +50,7 @@ export function TodayPage() {
         : `今天建议练 ${suggested} 日，你正在看 ${dayId} 日`
 
   return (
-    <div className="page">
+    <div className={restTimer.running ? 'page has-rest-bar' : 'page'}>
       <header className="hero">
         <button type="button" className="hero-poster" onClick={() => setShowPoster(true)}>
           <img src={day.poster} alt={`${day.id}日训练海报，点开可左右滑动看 1 到 9 图`} />
@@ -83,11 +88,15 @@ export function TodayPage() {
           <ExerciseRow
             key={exercise.id}
             exercise={exercise}
+            pref={getPref(exercise.id)}
             done={Boolean(checks[exercise.id])}
             onToggle={() => {
               void toggle(exercise.id)
             }}
             onOpen={() => setOpenExercise(exercise)}
+            onRest={() => {
+              void restTimer.start(getPref(exercise.id).restSec, exercise.name)
+            }}
           />
         ))}
       </section>
@@ -101,8 +110,21 @@ export function TodayPage() {
         </ul>
       </section>
 
+      {restTimer.running ? (
+        <RestTimerBar left={restTimer.left} label={restTimer.label} onStop={restTimer.stop} />
+      ) : null}
       {openExercise ? (
-        <ExerciseSheet day={day} exercise={openExercise} onClose={() => setOpenExercise(null)} />
+        <ExerciseSheet
+          day={day}
+          exercise={openExercise}
+          pref={getPref(openExercise.id)}
+          onPrefChange={(pref) => updatePref(openExercise.id, pref)}
+          onStartRest={() => {
+            void restTimer.start(getPref(openExercise.id).restSec, openExercise.name)
+            setOpenExercise(null)
+          }}
+          onClose={() => setOpenExercise(null)}
+        />
       ) : null}
       {showPoster ? (
         <PosterLightbox startSrc={day.poster} onClose={() => setShowPoster(false)} />

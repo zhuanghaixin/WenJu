@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b5fff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="抱持训练" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>60kg 抱持力量｜12 周专项训练</title>
+  <style>
+    :root{
+      --bg:#07111f; --bg2:#0b1526; --card:#0e1d31cc; --card-solid:#0f1f34;
+      --line:#24364f; --text:#f7fbff; --muted:#a9b8ca; --primary:#67a6ff;
+      --primary2:#7dd3fc; --accent:#ff7b54; --good:#45d48a; --warn:#ffd166;
+      --danger:#ff6b7a; --shadow:0 18px 50px rgba(0,0,0,.28);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:
+      radial-gradient(circle at 10% -10%, #173a72 0, transparent 35%),
+      linear-gradient(180deg,var(--bg) 0,var(--bg2) 55%,#07111f 100%);color:var(--text);min-height:100vh}
+    button,input,select{font:inherit}
+    .app{max-width:860px;margin:0 auto;padding-bottom:110px}
+    .hero{position:relative;min-height:440px;overflow:hidden;border-radius:0 0 34px 34px;box-shadow:var(--shadow)}
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:54% 38%;filter:saturate(.92) contrast(1.02)}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,7,16,.10),rgba(7,17,31,.25) 38%,rgba(7,17,31,.96) 94%)}
+    .heroTop{position:relative;z-index:2;padding:18px 18px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid rgba(255,255,255,.20);background:rgba(5,16,33,.38);backdrop-filter:blur(12px);border-radius:999px;color:#eef6ff;font-size:13px}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(69,212,138,.13)}
+    .install{border:none;cursor:pointer;color:#fff;background:rgba(12,27,50,.74);border:1px solid rgba(255,255,255,.18);padding:9px 12px;border-radius:12px;backdrop-filter:blur(12px)}
+    .heroCopy{position:absolute;z-index:2;left:18px;right:18px;bottom:24px}
+    .eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#d1e5ff;font-weight:700}
+    h1{font-size:clamp(30px,8vw,48px);line-height:1.04;margin:10px 0 10px;max-width:700px}
+    .subtitle{color:#c8d8ea;font-size:15px;line-height:1.6;max-width:720px;margin:0}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+    .stat{background:rgba(12,28,50,.64);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(10px);border-radius:16px;padding:12px}
+    .stat b{display:block;font-size:18px}.stat span{font-size:12px;color:#b8c9dd}
+    main{padding:18px}
+    .section{margin-top:18px}
+    .sectionHead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 2px 12px}
+    .sectionHead h2{font-size:20px;margin:0}.sectionHead p{margin:0;color:var(--muted);font-size:13px}
+    .card{background:linear-gradient(180deg,rgba(18,37,62,.92),rgba(10,27,47,.92));border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.14)}
+    .phaseCard{padding:16px}
+    .phaseTop{display:flex;gap:12px;align-items:center}
+    .weekBadge{width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(145deg,#2563eb,#38bdf8);font-size:21px;font-weight:800;box-shadow:0 10px 25px rgba(37,99,235,.28)}
+    .phaseTop h3{margin:0 0 5px}.phaseTop small{color:var(--muted)}
+    .progress{height:8px;background:#0a1728;border-radius:999px;overflow:hidden;margin:14px 0 8px}
+    .progress i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));border-radius:inherit}
+    .weekRow{display:flex;gap:8px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}.weekRow::-webkit-scrollbar{display:none}
+    .weekBtn{flex:0 0 auto;border:1px solid var(--line);background:#0b192b;color:#b9c8d9;width:42px;height:42px;border-radius:14px;cursor:pointer}
+    .weekBtn.active{background:#dcecff;color:#052552;border-color:#dcecff;font-weight:800}
+    .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+    .tab{border:1px solid var(--line);background:#0b192b;color:#c3d2e2;padding:11px 8px;border-radius:14px;cursor:pointer;font-weight:700}
+    .tab.active{border-color:#75adff;background:linear-gradient(180deg,#12366d,#0e2d5a);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+    .dayMeta{padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+    .dayMeta strong{font-size:17px}.dayMeta span{color:var(--muted);font-size:12px}
+    .exerciseList{display:grid;gap:10px}
+    .exercise{padding:14px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center}
+    .check{appearance:none;width:25px;height:25px;border:2px solid #4d6380;border-radius:8px;display:grid;place-items:center;cursor:pointer;background:#091729}
+    .check:checked{background:var(--good);border-color:var(--good)}
+    .check:checked::after{content:"✓";color:#062218;font-weight:900;font-size:16px}
+    .exMain h4{margin:0 0 4px;font-size:16px}.exMain p{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+    .rep{font-weight:800;font-size:15px;text-align:right}.rep small{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:4px}
+    .logRow{grid-column:2/4;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+    .field{display:flex;align-items:center;background:#091729;border:1px solid #24364f;border-radius:12px;padding:8px 10px;gap:8px}
+    .field span{font-size:11px;color:var(--muted);white-space:nowrap}.field input{width:100%;min-width:0;background:transparent;border:0;color:#fff;outline:none;font-weight:700}
+    .tips{display:grid;gap:10px}
+    .tip{padding:16px}.tip h3{font-size:16px;margin:0 0 7px}.tip p{margin:0;color:#c3d1e0;line-height:1.7;font-size:13px}
+    .milestones{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .mile{padding:15px}.mile b{display:block;font-size:17px;margin-bottom:3px}.mile span{font-size:12px;color:var(--muted)}
+    .warn{border-color:#5b4331;background:linear-gradient(180deg,rgba(65,42,28,.72),rgba(37,29,26,.72))}.warn h3{color:#ffd4b2}
+    .rpeGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.rpe{padding:10px 5px;text-align:center;background:#091729;border:1px solid #22344e;border-radius:12px}.rpe b{display:block}.rpe span{font-size:10px;color:var(--muted)}
+    .timerDock{position:fixed;z-index:20;left:50%;bottom:18px;transform:translateX(-50%);width:min(820px,calc(100% - 24px));background:rgba(7,17,31,.85);border:1px solid rgba(160,190,230,.23);backdrop-filter:blur(18px);border-radius:20px;box-shadow:0 16px 50px rgba(0,0,0,.36);padding:10px;display:flex;align-items:center;gap:10px}
+    .timerMain{min-width:78px;text-align:center}.timerMain b{display:block;font-size:18px}.timerMain span{font-size:10px;color:var(--muted)}
+    .timerBtns{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;flex:1}.timerBtns button{border:1px solid #2d4463;background:#0e223b;color:#dce8f6;border-radius:12px;padding:10px 7px;cursor:pointer;font-size:12px}.timerBtns button.primary{background:#dcecff;color:#062456;border-color:#dcecff;font-weight:800}
+    .toast{position:fixed;z-index:50;left:50%;top:18px;transform:translate(-50%,-20px);opacity:0;pointer-events:none;background:#eaf4ff;color:#082240;padding:10px 14px;border-radius:999px;font-weight:700;transition:.25s;box-shadow:var(--shadow);font-size:13px}.toast.show{opacity:1;transform:translate(-50%,0)}
+    footer{text-align:center;color:#6f8197;font-size:12px;padding:30px 18px 6px;line-height:1.7}
+    @media (min-width:700px){
+      .hero{min-height:520px;border-radius:0 0 38px 38px}.heroTop{padding:22px 28px 0}.heroCopy{left:28px;right:28px;bottom:30px}main{padding:24px}.exerciseList{grid-template-columns:repeat(2,1fr)}.exercise{grid-template-columns:auto 1fr}.rep{grid-column:2;text-align:left}.logRow{grid-column:2}.milestones{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <section class="hero">
+    <img src="assets/cover.png" alt="训练目标视觉图" />
+    <div class="heroTop">
+      <div class="pill"><span class="dot"></span>12 周 · 每周 3 练 · 离线可用</div>
+      <button class="install" id="installBtn" hidden>安装 App</button>
+    </div>
+    <div class="heroCopy">
+      <div class="eyebrow">Strength · Carry · Control</div>
+      <h1>60kg 抱持力量<br>12 周专项训练</h1>
+      <p class="subtitle">目标不是“硬拔起来”，而是建立腿臀起身、核心抗弯、前侧抱持与移动稳定。真人重心会移动，所以训练要留足安全余量。</p>
+      <div class="stats">
+        <div class="stat"><b>3 天</b><span>A / B / C 训练周</span></div>
+        <div class="stat"><b>60–80</b><span>分钟 / 次</span></div>
+        <div class="stat"><b>RPE 7–8</b><span>主训练区间</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section">
+      <div class="sectionHead"><div><h2>本周阶段</h2><p>按周数自动切换训练目标</p></div></div>
+      <div class="card phaseCard">
+        <div class="phaseTop">
+          <div class="weekBadge" id="weekBadge">W1</div>
+          <div><h3 id="phaseTitle">动作学习期</h3><small id="phaseDesc">先把动作做标准，不追重量</small></div>
+        </div>
+        <div class="progress"><i id="phaseProgress" style="width:8.3%"></i></div>
+        <div class="weekRow" id="weekRow"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="sectionHead"><div><h2>训练日</h2><p>建议周一 A / 周三 B / 周六 C</p></div><p id="dayNote"></p></div>
+      <div class="tabs">
+        <button class="tab active" data-day="A">A · 起身</button>
+        <button class="tab" data-day="B">B · 抱持</button>
+        <button class="tab" data-day="C">C · 稳定</button>
+      </div>
+      <div class="card dayMeta"><div><strong id="dayTitle">A 日 · 腿部起身力量</strong><br><span id="dayFocus">深蹲模式 + 单腿力量 + 核心稳定</span></div><span id="completion">0 / 6 完成</span></div>
+      <div class="exerciseList" id="exerciseList"></div>
+    </section>
+
+    <section class="section">
+      <div class="sectionHead"><div><h2>12 周升级规则</h2><p>简单、可执行，不用天天算百分比</p></div></div>
+      <div class="tips">
+        <div class="card tip"><h3>主项怎么加重量</h3><p>深蹲 / 硬拉：本周全部完成，最后一组仍能再做约 2 次，下周加 <b>2.5–5kg</b>。泽奇深蹲姿势稳定时，下周加 <b>2.5kg</b>。</p></div>
+        <div class="card tip"><h3>辅助动作怎么升级</h3><p>例如 3×8，先慢慢做到 3×10，再提高一档重量，重新从 3×8 开始。农夫行走可以先加距离，再加每只手的重量。</p></div>
+        <div class="card tip warn"><h3>真人测试不要着急</h3><p>前 8 周不要拿真人当训练器械。第 9 周后，如果训练无疼痛、动作稳定，再从“贴近 → 半蹲 → 抱紧 → 腿臀站起 → 保持 1–2 秒 → 放下”开始。不要弯腰用手臂硬拔。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="sectionHead"><div><h2>第 12 周参考里程碑</h2><p>是安全余量参考，不是硬性门槛</p></div></div>
+      <div class="milestones">
+        <div class="card mile"><b>80–100kg × 5</b><span>深蹲</span></div>
+        <div class="card mile"><b>100–120kg × 5</b><span>硬拉</span></div>
+        <div class="card mile"><b>45–55kg × 5</b><span>泽奇深蹲</span></div>
+        <div class="card mile"><b>50–60kg × 30s</b><span>泽奇静态抱持</span></div>
+        <div class="card mile"><b>≈30kg/手 × 20m</b><span>农夫行走</span></div>
+        <div class="card mile"><b>60–90s</b><span>平板支撑</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="sectionHead"><div><h2>RPE 快速表</h2><p>大部分时间停在 7–8</p></div></div>
+      <div class="rpeGrid">
+        <div class="rpe"><b>6</b><span>余 4 次</span></div><div class="rpe"><b>7</b><span>余 3 次</span></div><div class="rpe"><b>8</b><span>余 2 次</span></div><div class="rpe"><b>9</b><span>余 1 次</span></div><div class="rpe"><b>10</b><span>力竭</span></div>
+      </div>
+    </section>
+  </main>
+  <footer>训练以稳定、可控、无疼痛为前提。若出现锐痛、麻木、放射痛或动作明显失控，应停止并寻求专业评估。PWA 数据仅保存在当前设备浏览器。</footer>
+</div>
+
+<div class="timerDock">
+  <div class="timerMain"><b id="timer">01:30</b><span>组间休息</span></div>
+  <div class="timerBtns"><button data-sec="60">60s</button><button data-sec="90">90s</button><button data-sec="120">120s</button><button class="primary" id="timerToggle">开始</button></div>
+</div>
+<div class="toast" id="toast">已保存</div>
+
+<script>
+const basePlans = {
+  A:{title:'A 日 · 腿部起身力量',focus:'深蹲模式 + 单腿力量 + 核心稳定',items:[
+    ['杠铃深蹲 / 史密斯深蹲','4 × 5','主项','脚掌三点着地，膝盖跟脚尖方向一致，腹压先建立再下蹲'],
+    ['保加利亚分腿蹲','3 × 8 / 侧','单腿','前脚踩稳，身体微前倾，后腿只辅助平衡'],
+    ['臀推','3 × 8–10','臀腿','顶端夹臀，不要用腰过伸代偿'],
+    ['腿举','3 × 10','腿部容量','腰背贴垫，膝盖不要内扣'],
+    ['平板支撑','3 × 45–60s','核心','肋骨收下，臀部不要掉下去'],
+    ['Pallof Press','3 × 12 / 侧','抗旋转','保持骨盆和胸口正对前方']
+  ]},
+  B:{title:'B 日 · 后侧链 + 抱持',focus:'硬拉 + 泽奇抱持 + 行走',items:[
+    ['六角杠硬拉 / 传统硬拉','4 × 5','主项','杠铃贴近身体，先收紧背阔，脚蹬地站起'],
+    ['泽奇深蹲','3 × 6','专项','杠铃放肘窝，胸口抬起，核心持续收紧'],
+    ['罗马尼亚硬拉','3 × 8','后侧链','髋向后坐，小腿接近垂直，感受腘绳肌张力'],
+    ['农夫行走','4 × 20m','移动稳定','身体不要左右摇，步幅小而稳'],
+    ['坐姿划船','3 × 8–12','上背','先把肩胛往后下方收，再拉手柄'],
+    ['泽奇静态抱持','3 × 20–30s','专项','站直、收腹，重量贴近躯干，不要后仰']
+  ]},
+  C:{title:'C 日 · 综合稳定',focus:'中等负重 + 单腿 + 躯干稳定',items:[
+    ['高脚杯深蹲 / 前蹲','4 × 6–8','深蹲变化','重量贴近胸口，保持躯干稳定'],
+    ['台阶踩踏 Step-up','3 × 8 / 侧','单腿','发力腿踩实台阶，不要蹬地借力'],
+    ['行进弓步','3 × 10 / 侧','动态稳定','每一步落稳再起，不抢速度'],
+    ['高位下拉','3 × 10','背部','胸口微抬，肘往身体两侧下拉'],
+    ['侧桥','3 × 30–45s / 侧','侧向核心','头、肩、髋、脚成一直线'],
+    ['Dead Bug','3 × 10 / 侧','核心控制','腰背贴地，手脚伸展时保持腹压']
+  ]}
+};
+
+const phases = [
+  {min:1,max:3,title:'动作学习期',desc:'RPE 6–7：先把动作做标准，不追重量'},
+  {min:4,max:4,title:'减量恢复周',desc:'重量降低约 10–15%，辅助动作少做 1 组'},
+  {min:5,max:8,title:'力量增长期',desc:'主项进入 RPE 7–8，开始稳定加重量'},
+  {min:9,max:11,title:'专项抱持期',desc:'把力量转化为抱持、静态稳定与短距离移动'},
+  {min:12,max:12,title:'恢复 + 测试',desc:'前两次减量，第三次再做能力测试'}
+];
+
+let week = +(localStorage.getItem('sh_week')||1);
+let day = localStorage.getItem('sh_day')||'A';
+let timerSec = 90, timerLeft = 90, timerInt = null;
+
+function phaseFor(w){return phases.find(p=>w>=p.min&&w<=p.max)}
+function adjustedPlan(d,w){
+  const src = JSON.parse(JSON.stringify(basePlans[d]));
+  if(w>=5 && w<=8){
+    if(d==='A'){src.items[0][1]='5 × 4';src.items[2][1]='4 × 6–8'}
+    if(d==='B'){src.items[0][1]='5 × 3–4';src.items[1][1]='4 × 5';src.items[5][1]='4 × 20–30s';src.items[3][1]='4 × 20–30m'}
+  }
+  if(w>=9 && w<=11){
+    if(d==='A') src.items[0][1]='4 × 3–5';
+    if(d==='B'){src.items[0][1]='4 × 3';src.items[1][1]='4 × 5';src.items[5][1]='3–4 × 30s';src.items[3][1]='4 × 20–30m'}
+  }
+  if(w===12){
+    src.items.forEach((it,i)=>{ if(i<2) it[1]=it[1].replace(/^4 ×/,'3 ×').replace(/^5 ×/,'3 ×') });
+  }
+  return src;
+}
+function storageKey(i){return `sh_w${week}_${day}_${i}`}
+function toast(msg='已保存'){
+  const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(window._t); window._t=setTimeout(()=>el.classList.remove('show'),1200)
+}
+function renderWeeks(){
+  const row=document.getElementById('weekRow'); row.innerHTML='';
+  for(let i=1;i<=12;i++){const b=document.createElement('button');b.className='weekBtn'+(i===week?' active':'');b.textContent=i;b.onclick=()=>{week=i;localStorage.setItem('sh_week',week);render();toast('已切换到第 '+week+' 周')};row.appendChild(b)}
+}
+function renderExercises(){
+  const plan=adjustedPlan(day,week); document.getElementById('dayTitle').textContent=plan.title;document.getElementById('dayFocus').textContent=plan.focus;
+  const list=document.getElementById('exerciseList');list.innerHTML='';
+  plan.items.forEach((it,i)=>{
+    const state=JSON.parse(localStorage.getItem(storageKey(i))||'{}');
+    const el=document.createElement('div'); el.className='card exercise';
+    el.innerHTML=`<input class="check" type="checkbox" ${state.done?'checked':''} aria-label="完成 ${it[0]}">
+      <div class="exMain"><h4>${it[0]}</h4><p>${it[3]}</p></div>
+      <div class="rep">${it[1]}<small>${it[2]}</small></div>
+      <div class="logRow"><label class="field"><span>重量 kg</span><input inputmode="decimal" placeholder="—" value="${state.weight||''}"></label><label class="field"><span>RPE</span><input inputmode="decimal" placeholder="7–8" value="${state.rpe||''}"></label></div>`;
+    const [check,weight,rpe]=[el.querySelector('.check'),...el.querySelectorAll('input:not(.check)')];
+    const save=()=>{localStorage.setItem(storageKey(i),JSON.stringify({done:check.checked,weight:weight.value,rpe:rpe.value}));updateCompletion();}
+    check.onchange=()=>{save(); toast(check.checked?'完成 +1':'已取消')}; weight.onchange=save;rpe.onchange=save;
+    list.appendChild(el)
+  });
+  updateCompletion();
+}
+function updateCompletion(){
+  const total=adjustedPlan(day,week).items.length;let done=0;
+  for(let i=0;i<total;i++){const s=JSON.parse(localStorage.getItem(storageKey(i))||'{}');if(s.done)done++}
+  document.getElementById('completion').textContent=`${done} / ${total} 完成`;
+}
+function render(){
+  renderWeeks();
+  const p=phaseFor(week); document.getElementById('weekBadge').textContent='W'+week;document.getElementById('phaseTitle').textContent=p.title;document.getElementById('phaseDesc').textContent=p.desc;document.getElementById('phaseProgress').style.width=(week/12*100)+'%';
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.day===day));
+  document.getElementById('dayNote').textContent= week<=4?'动作优先':week<=8?'稳定加重':week<=11?'专项转化':'减量测试';
+  renderExercises();
+}
+
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{day=t.dataset.day;localStorage.setItem('sh_day',day);render();toast('已切换到 '+day+' 日')});
+
+function fmt(s){const m=Math.floor(s/60).toString().padStart(2,'0'),ss=(s%60).toString().padStart(2,'0');return `${m}:${ss}`}
+function paintTimer(){document.getElementById('timer').textContent=fmt(timerLeft)}
+function startTimer(){
+  clearInterval(timerInt);timerInt=setInterval(()=>{timerLeft--;paintTimer();if(timerLeft<=0){clearInterval(timerInt);timerInt=null;document.getElementById('timerToggle').textContent='开始';toast('休息结束，下一组'); if(navigator.vibrate) navigator.vibrate([120,80,120]);}},1000);document.getElementById('timerToggle').textContent='暂停';
+}
+document.querySelectorAll('[data-sec]').forEach(b=>b.onclick=()=>{timerSec=+b.dataset.sec;timerLeft=timerSec;paintTimer();clearInterval(timerInt);timerInt=null;document.getElementById('timerToggle').textContent='开始'});
+document.getElementById('timerToggle').onclick=()=>{if(timerInt){clearInterval(timerInt);timerInt=null;document.getElementById('timerToggle').textContent='继续'}else{if(timerLeft<=0)timerLeft=timerSec;startTimer()}};
+
+let deferredPrompt; const installBtn=document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.hidden=false});
+installBtn.addEventListener('click',async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.hidden=true});
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+render(); paintTimer();
+</script>
+</body>
+</html>
